@@ -2042,6 +2042,11 @@ static int push_state(REExecContext *s,
     return 0;
 }
 
+int lre_check_timeout(void *opaque) {
+    // Timeout check not implemented for this build
+    return 0;
+}
+
 static int lre_poll_timeout(REExecContext *s)
 {
     if (unlikely(--s->interrupt_counter <= 0)) {
