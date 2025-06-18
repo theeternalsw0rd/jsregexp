@@ -35,7 +35,7 @@
 void *lre_realloc(void *opaque, void *ptr, size_t size) {
   return realloc(ptr, size);
 }
-BOOL lre_check_stack_overflow(void *opaque, size_t alloca_size) {
+bool lre_check_stack_overflow(void *opaque, size_t alloca_size) {
   return FALSE;
 }
 
@@ -94,7 +94,7 @@ static inline uint16_t *utf8_to_utf16(const uint8_t *input, uint32_t n,
   while (*pos) {
     (*indices)[q - str] = pos - input;
     (*rev_indices)[pos - input] = q - str;
-    int c = unicode_from_utf8(pos, UTF8_CHAR_LEN_MAX, &pos);
+    uint32_t c = utf8_decode_len(pos, UTF8_CHAR_LEN_MAX, &pos);
     if (c == -1) {
       // malformed
       free(str);
