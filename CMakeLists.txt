@@ -19,12 +19,11 @@ include_directories("C:/Program Files/LuaRocks/include")
 
 # Optional: Link against Lua if jsregexp uses any symbols from it
 # Example:
-# target_link_libraries(jsregexp PRIVATE lua51)
+target_link_libraries(jsregexp PRIVATE
+    "C:/Program Files/LuaRocks/lua5.1.lib"  # Adjust the path to your Lua import library
+)
 
-# MSVC-specific settings
-if(MSVC)
-    target_compile_definitions(jsregexp PRIVATE -D_CRT_SECURE_NO_WARNINGS)
-endif()
+target_compile_definitions(jsregexp PRIVATE -D_CRT_SECURE_NO_WARNINGS)
 
 # Output name (e.g., jsregexp.dll)
 set_target_properties(jsregexp PROPERTIES OUTPUT_NAME "jsregexp")
